@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .box{
+                border: 1px solid black;
+                width: 440px;
+                height: 298px;
+                margin: 50px auto;
+            }
+            .box>ul>li{
+                list-style: none;
+                width: 110px;
+                height: 50px;
+                background: orange;
+                text-align: center;
+                line-height: 50px;
+                float: left;
+            }
+            .nav>.current{
+                background: #cccccc;
+            }
+            .content>li{
+                list-style:none;
+                display: none;
+            }
+            .content>.show{
+        display: block;
+            }
+        </style>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+$(function(){
+  /**
+   *  $(".nav>li").hover(function(){
+        $(this).addClass('current')
+       var index=$(this).index();
+       var $li=$('.content>li').eq(index);//eq是获取该对象，并且包装成jq对象，而get是获取元素对象，但不会包装成jq对象
+         $li.addClass('show');
+    },function(){
+        $(this).removeClass('current')
+        var index=$(this).index();
+        var $li=$('.content>li').eq(index);//eq是获取jq对象
+         $li.removeClass('show');
+    })
+   */ 
+   $(".nav>li").mouseenter(function(){
+    $(this).addClass('current')
+    $(this).siblings().removeClass('current');
+    var index=$(this).index();
+    var $li=$('.content>li').eq(index);
+    $li.addClass('show');
+    $li.siblings().removeClass('show');
+   })
+})
+</script>
+
+</head>
+<body>
+    <div class="box">
+        <ul class="nav">
+            <li class="current">H5+C3</li>
+            <li>jQuery</li>
+            <li>C语言</li>
+            <li>Go语言</li>
+        </ul>
+        <ul class="content">
+            <li class="show"> <img src="images/11.jpg" alt=""> </li>
+            <li> <img src="images/12.jpg" alt=""> </li>
+            <li> <img src="images/13.jpg" alt=""> </li>
+            <li> <img src="images/14.jpg" alt=""> </li>
+        </ul>
+    </div>
+</body>
+</html>
